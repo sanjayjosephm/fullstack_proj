@@ -12,7 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
   standalone: true,
   // schemas :[CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    BrowserModule,
+    // BrowserModule,
     CommonModule, 
     RouterOutlet,
     FormsModule,

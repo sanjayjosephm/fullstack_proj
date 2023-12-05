@@ -31,7 +31,7 @@ export class StudentcrudComponent {
   }
   getAllStudent()
   { 
-    this.http.get("http://localhost:9002/api/student/")
+    this.http.get("http://localhost:8080/api/student/")
     .subscribe((resultData: any)=>
     {
         this.isResultLoaded = true;
@@ -45,11 +45,11 @@ export class StudentcrudComponent {
    // this.isLogin = false; 
    // alert("hi");
     let bodyData = {
-      "stname" : this.student_name,
-      "course" : this.course_name,
+      "student_name" : this.student_name,
+      "course_name" : this.course_name,
       "fee" : this.fee,
     };
-    this.http.post("http://localhost:9002/api/student/add",bodyData).subscribe((resultData: any)=>
+    this.http.post("http://localhost:8080/api/student/add",bodyData).subscribe((resultData: any)=>
     {
         console.log(resultData);
         alert("Employee Registered Successfully")
@@ -61,8 +61,8 @@ export class StudentcrudComponent {
   }
   setUpdate(data: any) 
   {
-   this.student_name = data.stname;
-   this.course_name = data.course;
+   this.student_name = data.student_name;
+   this.course_name = data.course_name;
    this.fee = data.fee;
   
    this.currentStudentID = data.id;
@@ -72,12 +72,12 @@ export class StudentcrudComponent {
   {
     let bodyData = 
     {
-      "stname" : this.student_name,
-      "course" : this.course_name,
+      "student_name" : this.student_name,
+      "course_name" : this.course_name,
       "fee" : this.fee
     };
     
-    this.http.put("http://localhost:9002/api/student/update"+ "/"+ this.currentStudentID,bodyData).subscribe((resultData: any)=>
+    this.http.put("http://localhost:8080/api/student/update"+ "/"+ this.currentStudentID,bodyData).subscribe((resultData: any)=>
     {
         console.log(resultData);
         alert("Student Registered Updated")
@@ -99,7 +99,7 @@ export class StudentcrudComponent {
   }
   setDelete(data: any)
   {
-    this.http.delete("http://localhost:9002/api/student/delete"+ "/"+ data.id).subscribe((resultData: any)=>
+    this.http.delete("http://localhost:8080/api/student/delete"+ "/"+ data.id).subscribe((resultData: any)=>
     {
         console.log(resultData);
         alert("Student Deleted")
