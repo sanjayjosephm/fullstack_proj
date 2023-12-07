@@ -18,17 +18,19 @@ export class StudentcrudComponent {
   studentArray : any[] = [];
   isResultLoaded = false;
   isUpdateFormActive = false;
-
   student_name: string = "";
   course_name: string = "";
   fee: string = "";
   currentStudentID = "";
+
   constructor(private http: HttpClient ) 
   {
     this.getAllStudent();
   }
+
   ngOnInit(): void {
   }
+  
   getAllStudent()
   { 
     this.http.get("http://localhost:8080/api/student/")
@@ -47,7 +49,7 @@ export class StudentcrudComponent {
     let bodyData = {
       "student_name" : this.student_name,
       "course_name" : this.course_name,
-      "fee" : this.fee,
+      "fee" : parseInt(this.fee),
     };
     this.http.post("http://localhost:8080/api/student/add",bodyData).subscribe((resultData: any)=>
     {
@@ -64,7 +66,6 @@ export class StudentcrudComponent {
    this.student_name = data.student_name;
    this.course_name = data.course_name;
    this.fee = data.fee;
-  
    this.currentStudentID = data.id;
  
   }
@@ -74,7 +75,7 @@ export class StudentcrudComponent {
     {
       "student_name" : this.student_name,
       "course_name" : this.course_name,
-      "fee" : this.fee
+      "fee" : parseInt(this.fee)
     };
     
     this.http.put("http://localhost:8080/api/student/update"+ "/"+ this.currentStudentID,bodyData).subscribe((resultData: any)=>
@@ -95,7 +96,7 @@ export class StudentcrudComponent {
     else
     {
       this.UpdateRecords();
-    } 
+    }
   }
   setDelete(data: any)
   {
